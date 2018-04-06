@@ -70,6 +70,7 @@ class BootStrap {
         //if you want to configure multiple discovery strategies at once
         ArrayList<DiscoveryStrategyConfig> discoveryStrategyConfigs = new ArrayList<DiscoveryStrategyConfig>()
         joinConfig.getDiscoveryConfig().setDiscoveryStrategyConfigs(discoveryStrategyConfigs)*/
+        config.setInstanceName(SystemUtils.hostname)
         log.info "B setting up hazel:${config.toString()}"
         hazelService.instance = Hazelcast.newHazelcastInstance(config)
 
