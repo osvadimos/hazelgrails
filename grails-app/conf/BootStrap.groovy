@@ -28,7 +28,7 @@ class BootStrap {
         config.setInstanceName(SystemUtils.hostname)
 */
 
-        String prefix = grailsApplication.config.io.ansr.piker.properties.aws.dynamo.table.prefix ?: ''
+        String prefix = grailsApplication.config.awshazel.prefix
         Config config = new Config()
         config.getProperties().setProperty("hazelcast.discovery.enabled", "true")
         JoinConfig joinConfig = config.getNetworkConfig().getJoin()
@@ -37,13 +37,14 @@ class BootStrap {
         joinConfig.getAwsConfig().setEnabled(true)
         AwsDiscoveryStrategyFactory awsDiscoveryStrategyFactory = new AwsDiscoveryStrategyFactory()
         Map<String, Comparable> properties = new HashMap<String, Comparable>()
-        properties.put("accessKey", grailsApplication.config.grails.plugin.awssdk.accessHazelKey.toString())
-        properties.put("secretKey", grailsApplication.config.grails.plugin.awssdk.secretHazelKey.toString())
-        properties.put("region", grailsApplication.config.grails.plugin.awssdk.region.toString())
+        properties.put("access-key", grailsApplication.config.awshazel.accessHazelKey.toString())
+        properties.put("secret-key", grailsApplication.config.awshazel.secretHazelKey.toString())
+        properties.put("region", grailsApplication.config.awshazel.region.toString())
         properties.put("host-header", "ec2.amazonaws.com")
-        properties.put("tagKey", grailsApplication.config.grails.plugin.awssdk.hazelTagKey.toString())
-        properties.put("tagValue", prefix + grailsApplication.config.grails.plugin.awssdk.hazelTagKey.toString())
+        properties.put("tag-key", grailsApplication.config.awshazel.hazelTagKey.toString())
+        properties.put("tag-value", prefix + grailsApplication.config.awshazel.hazelTagKey.toString())
         DiscoveryStrategyConfig discoveryStrategyConfig = new DiscoveryStrategyConfig(awsDiscoveryStrategyFactory, properties)
+        log.debug "${discoveryStrategyConfig.getProperties()}"
         joinConfig.getDiscoveryConfig().addDiscoveryStrategyConfig(discoveryStrategyConfig)
 
         //if you want to configure multiple discovery strategies at once

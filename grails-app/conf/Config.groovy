@@ -1,4 +1,8 @@
 // configuration for plugin testing - will not be included in the plugin zip
+grails.config.locations = [
+        //        "file:${userHome}/.grails/${appName}-config.groovy",
+        "file:/etc/grails/hazelcast.groovy",
+]
 
 log4j = {
     // Example of changing the log pattern for the default console
@@ -31,7 +35,7 @@ log4j = {
 environments {
     development {
         grails {
-            grails.config.locations = ["file:/etc/grails/hazelcast.groovy"]
+            grails.config.locations = ["file://etc/grails/hazelcast.groovy"]
 
         }
         grails.serverURL = "http://localhost:8080"
