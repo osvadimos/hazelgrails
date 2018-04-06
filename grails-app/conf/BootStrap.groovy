@@ -34,7 +34,7 @@ class BootStrap {
         JoinConfig joinConfig = config.getNetworkConfig().getJoin()
         joinConfig.getTcpIpConfig().setEnabled(false)
         joinConfig.getMulticastConfig().setEnabled(false)
-        joinConfig.getAwsConfig().setEnabled(false)
+        joinConfig.getAwsConfig().setEnabled(true)
         AwsDiscoveryStrategyFactory awsDiscoveryStrategyFactory = new AwsDiscoveryStrategyFactory()
         Map<String, Comparable> properties = new HashMap<String, Comparable>()
         properties.put("access-key", grailsApplication.config.grails.plugin.awssdk.accessHazelKey.toString())
@@ -43,7 +43,6 @@ class BootStrap {
         properties.put("host-header", "ec2.amazonaws.com")
         properties.put("tag-key", grailsApplication.config.grails.plugin.awssdk.hazelTagKey.toString())
         properties.put("tag-value", prefix + grailsApplication.config.grails.plugin.awssdk.hazelTagKey.toString())
-        properties.put("hzPort", "5701")
         DiscoveryStrategyConfig discoveryStrategyConfig = new DiscoveryStrategyConfig(awsDiscoveryStrategyFactory, properties)
         joinConfig.getDiscoveryConfig().addDiscoveryStrategyConfig(discoveryStrategyConfig)
 
