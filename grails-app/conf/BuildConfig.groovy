@@ -33,6 +33,21 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo(grailsSettings.config.nexusHost + "/content/repositories/grails-plugins/") {
+            auth([
+                    username: grailsSettings.config.credentials.username,
+                    password: grailsSettings.config.credentials.password
+            ])
+            updatePolicy "always"
+        }
+        // java dependencies
+        mavenRepo(grailsSettings.config.nexusHost + "/content/groups/public/") {
+            auth([
+                    username: grailsSettings.config.credentials.username,
+                    password: grailsSettings.config.credentials.password
+            ])
+            updatePolicy "always"
+        }
     }
     dependencies {
         compile 'com.hazelcast:hazelcast-all:3.8'
