@@ -31,7 +31,6 @@ class BootStrap {
         JoinConfig joinConfig = config.getNetworkConfig().getJoin()
 
 */
-        String prefix = grailsApplication.config.awshazel.prefix
         Config config = new Config()
         config.getProperties().setProperty("hazelcast.discovery.enabled", "true")
         JoinConfig joinConfig = config.getNetworkConfig().getJoin()
@@ -43,17 +42,14 @@ class BootStrap {
         properties.put("access-key", grailsApplication.config.awshazel.accessHazelKey.toString())
         properties.put("secret-key", grailsApplication.config.awshazel.secretHazelKey.toString())
         properties.put("region", grailsApplication.config.awshazel.region.toString())
-        properties.put("host-header", "ec2.amazonaws.com")
+        properties.put("host-header","ec2.amazonaws.com")
         properties.put("tagKey", "hazelcluster")
         properties.put("tag-key", "hazelcluster")
         properties.put("tagValue", "hazelcluster")
         properties.put("tag-value", "hazelcluster")
         DiscoveryStrategyConfig discoveryStrategyConfig = new DiscoveryStrategyConfig(awsDiscoveryStrategyFactory, properties)
         joinConfig.getDiscoveryConfig().addDiscoveryStrategyConfig(discoveryStrategyConfig)
-        DiscoveryConfig discoveryConfig = new DiscoveryConfig()
-        discoveryConfig.addDiscoveryStrategyConfig(discoveryStrategyConfig)
-        joinConfig.setDiscoveryConfig(discoveryConfig)
-        config.networkConfig.setJoin(joinConfig)
+        
 /*        //Config config = new Config()
         JoinConfig joinConfig = config.getNetworkConfig().getJoin()
         joinConfig.getTcpIpConfig().setEnabled(false)

@@ -50,8 +50,8 @@ grails.project.dependency.resolution = {
         }
     }
     dependencies {
-        compile 'com.hazelcast:hazelcast-all:3.8'
-        compile 'com.hazelcast:hazelcast-aws:2.1.1'
+        /*compile 'com.hazelcast:hazelcast-all:3.8'*/
+        compile 'com.hazelcast:hazelcast-aws:2.1.15'
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
         // runtime 'mysql:mysql-connector-java:5.1.27'
     }
