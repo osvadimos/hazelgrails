@@ -19,4 +19,36 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+
+    info "grails.app",
+            "grails.app.controllers",
+            "grails.app.services",
+            "grails.app.conf.BootStrap",
+            "hazelgrails",
+            "com.hazelcast"
+}
+
+environments {
+    development {
+        grails {
+            grails.config.locations = ["file:/etc/grails/hazelcast.groovy"]
+
+        }
+        grails.serverURL = "http://localhost:8080"
+        grails.logging.jul.usebridge = true
+        log4j.env = {
+                    "grails.app.services"
+        }
+    }
+    development {
+        grails {
+            grails.config.locations = ["file:/etc/grails/hazelcast.groovy"]
+
+        }
+        grails.serverURL = "http://localhost:8080"
+        grails.logging.jul.usebridge = true
+        log4j.env = {
+            "grails.app.services"
+        }
+    }
 }
